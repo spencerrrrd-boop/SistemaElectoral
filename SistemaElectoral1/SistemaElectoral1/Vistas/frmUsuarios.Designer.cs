@@ -40,14 +40,14 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtContrasena = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbRol = new System.Windows.Forms.ComboBox();
+            this.cmbPadron = new System.Windows.Forms.ComboBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -164,21 +164,21 @@
             this.txtNombre.Size = new System.Drawing.Size(229, 20);
             this.txtNombre.TabIndex = 12;
             // 
-            // comboBox1
+            // cmbRol
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(42, 236);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(236, 21);
-            this.comboBox1.TabIndex = 13;
+            this.cmbRol.FormattingEnabled = true;
+            this.cmbRol.Location = new System.Drawing.Point(42, 236);
+            this.cmbRol.Name = "cmbRol";
+            this.cmbRol.Size = new System.Drawing.Size(236, 21);
+            this.cmbRol.TabIndex = 13;
             // 
-            // comboBox2
+            // cmbPadron
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(373, 236);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(229, 21);
-            this.comboBox2.TabIndex = 14;
+            this.cmbPadron.FormattingEnabled = true;
+            this.cmbPadron.Location = new System.Drawing.Point(373, 236);
+            this.cmbPadron.Name = "cmbPadron";
+            this.cmbPadron.Size = new System.Drawing.Size(229, 21);
+            this.cmbPadron.TabIndex = 14;
             // 
             // btnRegistrar
             // 
@@ -204,14 +204,14 @@
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dgvUsuarios
             // 
-            this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 369);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(680, 207);
-            this.dataGridView1.TabIndex = 17;
+            this.dgvUsuarios.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsuarios.Location = new System.Drawing.Point(12, 369);
+            this.dgvUsuarios.Name = "dgvUsuarios";
+            this.dgvUsuarios.Size = new System.Drawing.Size(680, 207);
+            this.dgvUsuarios.TabIndex = 17;
             // 
             // txtBuscar
             // 
@@ -229,11 +229,11 @@
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(704, 581);
             this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvUsuarios);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbPadron);
+            this.Controls.Add(this.cmbRol);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtContrasena);
             this.Controls.Add(this.txtApellido);
@@ -251,7 +251,7 @@
             this.Load += new System.EventHandler(this.frmUsuarios_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,11 +271,11 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtContrasena;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbRol;
+        private System.Windows.Forms.ComboBox cmbPadron;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.TextBox txtBuscar;
     }
 }

@@ -60,10 +60,9 @@ namespace SistemaElectoral1.Vistas
 
         private void btnPanel_Click(object sender, EventArgs e)
         {
-            frmPanel frm = new frmPanel();
+            frmPanel frm = new frmPanel(_usuarioActual);
             frm.Show();
         }
-
         private void btnReportes_Click(object sender, EventArgs e)
         {
             frmReportes frm = new frmReportes(_usuarioActual);

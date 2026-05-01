@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SistemaElectoral1
+namespace SistemaElectoral1.Vistas
 {
-    public partial class Form1 : Form
+    public partial class frmPanel : Form
     {
-        public Form1()
+        public frmPanel()
         {
             InitializeComponent();
         }

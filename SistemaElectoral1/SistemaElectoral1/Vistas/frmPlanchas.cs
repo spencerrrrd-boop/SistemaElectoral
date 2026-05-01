@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaElectoral1.Models;
+using System.Windows.Forms;
 
 namespace SistemaElectoral1.Vistas
 {
     public partial class frmPlanchas : Form
     {
-        public frmPlanchas()
+        private Usuario _usuario;
+        public frmPlanchas(Usuario usuario)
         {
             InitializeComponent();
+            _usuario = usuario;
         }
     }
 }

@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaElectoral1.Models;
+using System.Windows.Forms;
 
 namespace SistemaElectoral1.Vistas
 {
     public partial class frmVotacion : Form
     {
-        public frmVotacion()
+        private Usuario _usuario;
+        public frmVotacion(Usuario usuario)
         {
             InitializeComponent();
+            _usuario = usuario;
         }
     }
 }

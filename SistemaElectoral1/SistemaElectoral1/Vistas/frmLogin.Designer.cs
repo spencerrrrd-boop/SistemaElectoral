@@ -1,4 +1,4 @@
-﻿namespace SistemaElectoral1
+﻿namespace SistemaElectoral1.Vistas
 {
     partial class frmLogin
     {

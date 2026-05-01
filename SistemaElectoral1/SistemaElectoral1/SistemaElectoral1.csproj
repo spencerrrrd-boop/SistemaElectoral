@@ -157,6 +157,8 @@
     <Compile Include="AccesoDatos\PlanchaDAL.cs" />
     <Compile Include="AccesoDatos\UsuarioDAL.cs" />
     <Compile Include="AccesoDatos\VotoDAL.cs" />
+    <Compile Include="Models\PanelGeneral.cs" />
+    <Compile Include="Models\ResultadoPlancha.cs" />
     <Compile Include="Vistas\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

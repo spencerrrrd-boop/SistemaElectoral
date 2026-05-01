@@ -2,8 +2,10 @@
 using SistemaElectoral1.Models;
 using System;
 using System.Windows.Forms;
+using SistemaElectoral1.Vistas;
 
-namespace SistemaElectoral1
+
+namespace SistemaElectoral1.Vistas
 {
     public partial class frmLogin : Form
     {

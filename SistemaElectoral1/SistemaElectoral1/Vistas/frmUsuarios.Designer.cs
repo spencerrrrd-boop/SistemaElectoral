@@ -191,6 +191,7 @@
             this.btnRegistrar.TabIndex = 15;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.MouseCaptureChanged += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnLimpiar
             // 
@@ -203,6 +204,7 @@
             this.btnLimpiar.TabIndex = 16;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.MouseCaptureChanged += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // dgvUsuarios
             // 
@@ -249,6 +251,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
             this.Load += new System.EventHandler(this.frmUsuarios_Load);
+            this.Click += new System.EventHandler(this.frmUsuarios_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblBienvenida = new System.Windows.Forms.Label();
             this.lblRol = new System.Windows.Forms.Label();
+            this.lblBienvenida = new System.Windows.Forms.Label();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnPanel = new System.Windows.Forms.Button();
             this.btnPlanchas = new System.Windows.Forms.Button();
@@ -51,16 +51,6 @@
             this.panel1.Size = new System.Drawing.Size(470, 90);
             this.panel1.TabIndex = 0;
             // 
-            // lblBienvenida
-            // 
-            this.lblBienvenida.Font = new System.Drawing.Font("Britannic Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienvenida.ForeColor = System.Drawing.Color.White;
-            this.lblBienvenida.Location = new System.Drawing.Point(15, 30);
-            this.lblBienvenida.Name = "lblBienvenida";
-            this.lblBienvenida.Size = new System.Drawing.Size(400, 31);
-            this.lblBienvenida.TabIndex = 0;
-            this.lblBienvenida.Text = "Bienvenido, Juan perez";
-            // 
             // lblRol
             // 
             this.lblRol.BackColor = System.Drawing.Color.MidnightBlue;
@@ -71,6 +61,16 @@
             this.lblRol.Size = new System.Drawing.Size(150, 18);
             this.lblRol.TabIndex = 1;
             this.lblRol.Text = "Director";
+            // 
+            // lblBienvenida
+            // 
+            this.lblBienvenida.Font = new System.Drawing.Font("Britannic Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBienvenida.ForeColor = System.Drawing.Color.White;
+            this.lblBienvenida.Location = new System.Drawing.Point(15, 30);
+            this.lblBienvenida.Name = "lblBienvenida";
+            this.lblBienvenida.Size = new System.Drawing.Size(400, 31);
+            this.lblBienvenida.TabIndex = 0;
+            this.lblBienvenida.Text = "Bienvenido, Juan perez";
             // 
             // btnUsuarios
             // 
@@ -84,6 +84,7 @@
             this.btnUsuarios.TabIndex = 1;
             this.btnUsuarios.Text = "👥 Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = false;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnPanel
             // 
@@ -97,6 +98,7 @@
             this.btnPanel.TabIndex = 2;
             this.btnPanel.Text = "📄 Panel de votacion";
             this.btnPanel.UseVisualStyleBackColor = false;
+            this.btnPanel.Click += new System.EventHandler(this.btnPanel_Click);
             // 
             // btnPlanchas
             // 
@@ -110,6 +112,7 @@
             this.btnPlanchas.TabIndex = 3;
             this.btnPlanchas.Text = "🗳️ Planchas electorales";
             this.btnPlanchas.UseVisualStyleBackColor = false;
+            this.btnPlanchas.Click += new System.EventHandler(this.btnPlanchas_Click);
             // 
             // btnReportes
             // 
@@ -123,6 +126,7 @@
             this.btnReportes.TabIndex = 4;
             this.btnReportes.Text = "📄 Reportes";
             this.btnReportes.UseVisualStyleBackColor = false;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // btnPeriodo
             // 
@@ -136,6 +140,7 @@
             this.btnPeriodo.TabIndex = 5;
             this.btnPeriodo.Text = "⏱️ Gestionar Periodo";
             this.btnPeriodo.UseVisualStyleBackColor = false;
+            this.btnPeriodo.Click += new System.EventHandler(this.btnPeriodo_Click);
             // 
             // button6
             // 
@@ -149,6 +154,7 @@
             this.button6.TabIndex = 6;
             this.button6.Text = "Cerrar sesion";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.MouseCaptureChanged += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // panel2
             // 

@@ -106,8 +106,95 @@ namespace SistemaElectoral1.Vistas
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcionalidad de exportar PDF proximamente.",
-                "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (dgvReporte.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar. Selecciona un reporte primero.",
+                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "PDF|*.pdf";
+            sfd.FileName = lblResultado.Text;
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    iTextSharp.text.Document doc = new iTextSharp.text.Document();
+                    iTextSharp.text.pdf.PdfWriter.GetInstance(doc,
+                        new System.IO.FileStream(sfd.FileName, System.IO.FileMode.Create));
+                    doc.Open();
+
+                    // Titulo
+                    iTextSharp.text.Font fuenteTitulo = new iTextSharp.text.Font(
+                        iTextSharp.text.Font.FontFamily.HELVETICA, 16, iTextSharp.text.Font.BOLD);
+                    doc.Add(new iTextSharp.text.Paragraph(lblResultado.Text, fuenteTitulo));
+                    doc.Add(new iTextSharp.text.Paragraph(
+                        $"Generado: {DateTime.Now.ToString("dd/MM/yyyy HH:mm")}"));
+                    doc.Add(new iTextSharp.text.Paragraph(" "));
+
+                    // Contar columnas visibles
+                    int colsVisibles = 0;
+                    foreach (DataGridViewColumn col in dgvReporte.Columns)
+                        if (col.Visible) colsVisibles++;
+
+                    iTextSharp.text.pdf.PdfPTable tabla =
+                        new iTextSharp.text.pdf.PdfPTable(colsVisibles);
+                    tabla.WidthPercentage = 100;
+
+                    // Encabezados
+                    iTextSharp.text.Font fuenteHeader = new iTextSharp.text.Font(
+                        iTextSharp.text.Font.FontFamily.HELVETICA, 10,
+                        iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.WHITE);
+
+                    foreach (DataGridViewColumn col in dgvReporte.Columns)
+                    {
+                        if (col.Visible)
+                        {
+                            iTextSharp.text.pdf.PdfPCell cell = new iTextSharp.text.pdf.PdfPCell(
+                                new iTextSharp.text.Phrase(col.HeaderText, fuenteHeader));
+                            cell.BackgroundColor = new iTextSharp.text.BaseColor(30, 58, 95);
+                            cell.HorizontalAlignment = iTextSharp.text.Element.ALIGN_CENTER;
+                            cell.Padding = 5;
+                            tabla.AddCell(cell);
+                        }
+                    }
+
+                    // Filas
+                    iTextSharp.text.Font fuenteFila = new iTextSharp.text.Font(
+                        iTextSharp.text.Font.FontFamily.HELVETICA, 9);
+
+                    foreach (DataGridViewRow row in dgvReporte.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (dgvReporte.Columns[cell.ColumnIndex].Visible)
+                            {
+                                iTextSharp.text.pdf.PdfPCell pdfCell =
+                                    new iTextSharp.text.pdf.PdfPCell(
+                                        new iTextSharp.text.Phrase(
+                                            cell.Value?.ToString() ?? "", fuenteFila));
+                                pdfCell.Padding = 4;
+                                tabla.AddCell(pdfCell);
+                            }
+                        }
+                    }
+
+                    doc.Add(tabla);
+                    doc.Close();
+
+                    MessageBox.Show("PDF exportado exitosamente.",
+                        "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    System.Diagnostics.Process.Start(sfd.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al exportar: " + ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

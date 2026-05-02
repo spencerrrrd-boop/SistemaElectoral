@@ -13,7 +13,6 @@ namespace SistemaElectoral1.Vistas
         {
             InitializeComponent();
         }
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string matricula = txtMatricula.Text.Trim();
@@ -35,7 +34,6 @@ namespace SistemaElectoral1.Vistas
                 return;
             }
 
-            // Redirigir segun el rol
             if (UsuarioBLL.EsDirector(usuario))
             {
                 frmMenu menu = new frmMenu(usuario);

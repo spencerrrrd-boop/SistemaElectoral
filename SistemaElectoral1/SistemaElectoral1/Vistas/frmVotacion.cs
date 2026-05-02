@@ -109,21 +109,7 @@ namespace SistemaElectoral1.Vistas
 
         private void Tarjeta_Click(object sender, EventArgs e)
         {
-            Control ctrl = (Control)sender;
-            int planchaID = (int)ctrl.Tag;
 
-            _planchaSeleccionadaID = planchaID;
-
-            // Resaltar plancha seleccionada
-            foreach (Control c in pnlPlanchas.Controls)
-            {
-                if (c is Panel)
-                {
-                    c.BackColor = (int)c.Tag == planchaID
-                        ? Color.FromArgb(37, 99, 235)
-                        : Color.FromArgb(30, 58, 95);
-                }
-            }
         }
 
         private void btnVotar_Click(object sender, EventArgs e)

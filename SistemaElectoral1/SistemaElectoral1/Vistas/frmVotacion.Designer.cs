@@ -101,6 +101,7 @@
             this.btnVotar.TabIndex = 3;
             this.btnVotar.Text = "Votar por Plancha Seleccionada";
             this.btnVotar.UseVisualStyleBackColor = false;
+            this.btnVotar.Click += new System.EventHandler(this.btnVotar_Click);
             // 
             // btnVotoNulo
             // 
@@ -113,6 +114,7 @@
             this.btnVotoNulo.TabIndex = 4;
             this.btnVotoNulo.Text = "Voto Nulo";
             this.btnVotoNulo.UseVisualStyleBackColor = false;
+            this.btnVotoNulo.Click += new System.EventHandler(this.btnVotoNulo_Click);
             // 
             // frmVotacion
             // 
@@ -131,6 +133,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmVotacion";
             this.Load += new System.EventHandler(this.frmVotacion_Load);
+            this.Click += new System.EventHandler(this.frmVotacion_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -38,6 +38,7 @@ namespace SistemaElectoral1.Vistas
 
         private void CargarPlanchas()
         {
+            pnlPlanchas.AutoScroll = false;
             _planchas = PlanchaBLL.ObtenerTodas();
             pnlPlanchas.Controls.Clear();
 
@@ -75,6 +76,44 @@ namespace SistemaElectoral1.Vistas
                 lblLema.Size = new Size(280, 20);
                 lblLema.Tag = p.PlanchaID;
 
+                // Cargar candidatos de la plancha
+                using (var cn = Conexion.ObtenerConexion())
+                {
+                    string query = @"SELECT NombrePuesto, NombreCompleto 
+                     FROM vw_CandidatosPorPlancha 
+                     WHERE PlanchaID = @PlanchaID
+                     ORDER BY Orden";
+                    var cmd = new Microsoft.Data.SqlClient.SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@PlanchaID", p.PlanchaID);
+                    cn.Open();
+                    var dr = cmd.ExecuteReader();
+                    int yLabel = 60;
+                    while (dr.Read())
+                    {
+                        Label lblPuesto = new Label();
+                        lblPuesto.Text = dr["NombrePuesto"].ToString();
+                        lblPuesto.ForeColor = Color.LightGray;
+                        lblPuesto.Font = new Font("Arial", 8);
+                        lblPuesto.Location = new Point(10, yLabel);
+                        lblPuesto.AutoSize = true;
+                        lblPuesto.Tag = p.PlanchaID;
+                        lblPuesto.Click += Tarjeta_Click;
+
+                        Label lblCandidato = new Label();
+                        lblCandidato.Text = dr["NombreCompleto"].ToString();
+                        lblCandidato.ForeColor = Color.White;
+                        lblCandidato.Font = new Font("Arial", 9, FontStyle.Bold);
+                        lblCandidato.Location = new Point(10, yLabel + 15);
+                        lblCandidato.AutoSize = true;
+                        lblCandidato.Tag = p.PlanchaID;
+                        lblCandidato.Click += Tarjeta_Click;
+
+                        tarjeta.Controls.Add(lblPuesto);
+                        tarjeta.Controls.Add(lblCandidato);
+                        yLabel += 35;
+                    }
+                }
+
                 // Logo si existe
                 if (!string.IsNullOrEmpty(p.LogoRuta) && System.IO.File.Exists(p.LogoRuta))
                 {
@@ -91,12 +130,13 @@ namespace SistemaElectoral1.Vistas
                 tarjeta.Controls.Add(lblNombre);
                 tarjeta.Controls.Add(lblLema);
 
-                // Evento click en la tarjeta
+                // Evento click en la tarjetac
                 tarjeta.Click += Tarjeta_Click;
                 lblNombre.Click += Tarjeta_Click;
                 lblLema.Click += Tarjeta_Click;
 
                 pnlPlanchas.Controls.Add(tarjeta);
+                tarjeta.MouseClick += (s, ev) => Tarjeta_Click(tarjeta, ev);
 
                 columna++;
                 if (columna == 2)
@@ -109,7 +149,27 @@ namespace SistemaElectoral1.Vistas
 
         private void Tarjeta_Click(object sender, EventArgs e)
         {
+            Control ctrl = (Control)sender;
 
+            // Subir hasta encontrar el panel tarjeta
+            while (ctrl.Parent != pnlPlanchas && ctrl.Parent != null)
+                ctrl = ctrl.Parent;
+
+            if (ctrl.Tag == null) return;
+
+            int planchaID = (int)ctrl.Tag;
+            _planchaSeleccionadaID = planchaID;
+
+            // Resaltar plancha seleccionada
+            foreach (Control c in pnlPlanchas.Controls)
+            {
+                if (c is Panel)
+                {
+                    c.BackColor = (int)c.Tag == planchaID
+                        ? Color.FromArgb(37, 99, 235)
+                        : Color.FromArgb(30, 58, 95);
+                }
+            }
         }
 
         private void btnVotar_Click(object sender, EventArgs e)

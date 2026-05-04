@@ -87,7 +87,7 @@
             this.pnlPlanchas.AutoScroll = true;
             this.pnlPlanchas.Location = new System.Drawing.Point(24, 111);
             this.pnlPlanchas.Name = "pnlPlanchas";
-            this.pnlPlanchas.Size = new System.Drawing.Size(680, 350);
+            this.pnlPlanchas.Size = new System.Drawing.Size(680, 526);
             this.pnlPlanchas.TabIndex = 2;
             // 
             // btnVotar
@@ -95,7 +95,7 @@
             this.btnVotar.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnVotar.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVotar.ForeColor = System.Drawing.Color.White;
-            this.btnVotar.Location = new System.Drawing.Point(99, 476);
+            this.btnVotar.Location = new System.Drawing.Point(96, 654);
             this.btnVotar.Name = "btnVotar";
             this.btnVotar.Size = new System.Drawing.Size(280, 40);
             this.btnVotar.TabIndex = 3;
@@ -108,7 +108,7 @@
             this.btnVotoNulo.BackColor = System.Drawing.Color.Gray;
             this.btnVotoNulo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVotoNulo.ForeColor = System.Drawing.Color.White;
-            this.btnVotoNulo.Location = new System.Drawing.Point(406, 476);
+            this.btnVotoNulo.Location = new System.Drawing.Point(403, 654);
             this.btnVotoNulo.Name = "btnVotoNulo";
             this.btnVotoNulo.Size = new System.Drawing.Size(150, 40);
             this.btnVotoNulo.TabIndex = 4;
@@ -121,7 +121,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(724, 541);
+            this.ClientSize = new System.Drawing.Size(724, 706);
             this.Controls.Add(this.btnVotoNulo);
             this.Controls.Add(this.btnVotar);
             this.Controls.Add(this.pnlPlanchas);

@@ -45,7 +45,7 @@ namespace SistemaElectoral1.Vistas
             int x = 10;
             int y = 10;
             int ancho = 310;
-            int alto = 200;
+            int alto = 250;
             int columna = 0;
 
             foreach (Plancha p in _planchas)

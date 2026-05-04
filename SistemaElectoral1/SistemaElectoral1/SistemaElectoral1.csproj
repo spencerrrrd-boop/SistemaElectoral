@@ -198,6 +198,12 @@
     <Compile Include="Vistas\frmPanel.Designer.cs">
       <DependentUpon>frmPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\frmPeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vistas\frmPeriodo.Designer.cs">
+      <DependentUpon>frmPeriodo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\frmPlanchas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmPanel.resx">
       <DependentUpon>frmPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vistas\frmPeriodo.resx">
+      <DependentUpon>frmPeriodo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vistas\frmPlanchas.resx">
       <DependentUpon>frmPlanchas.cs</DependentUpon>

@@ -69,11 +69,10 @@ namespace SistemaElectoral1.Vistas
             frm.Show();
         }
 
-        private void btnPeriodo_Click(object sender, EventArgs e)
+      private void btnPeriodo_Click(object sender, EventArgs e)
         {
-            // Abrir gestion de periodo de votacion
-            MessageBox.Show("Gestion de periodo proximamente.",
-                "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            frmPeriodo frm = new frmPeriodo(_usuarioActual);
+            frm.Show();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)

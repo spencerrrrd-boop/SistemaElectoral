@@ -38,6 +38,7 @@
             this.btnPeriodo = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnVotar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,7 +79,7 @@
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsuarios.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnUsuarios.Location = new System.Drawing.Point(40, 115);
+            this.btnUsuarios.Location = new System.Drawing.Point(40, 109);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(390, 45);
             this.btnUsuarios.TabIndex = 1;
@@ -92,7 +93,7 @@
             this.btnPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPanel.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPanel.ForeColor = System.Drawing.Color.White;
-            this.btnPanel.Location = new System.Drawing.Point(40, 225);
+            this.btnPanel.Location = new System.Drawing.Point(40, 230);
             this.btnPanel.Name = "btnPanel";
             this.btnPanel.Size = new System.Drawing.Size(390, 45);
             this.btnPanel.TabIndex = 2;
@@ -120,7 +121,7 @@
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportes.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.ForeColor = System.Drawing.Color.White;
-            this.btnReportes.Location = new System.Drawing.Point(40, 280);
+            this.btnReportes.Location = new System.Drawing.Point(40, 290);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Size = new System.Drawing.Size(390, 45);
             this.btnReportes.TabIndex = 4;
@@ -134,7 +135,7 @@
             this.btnPeriodo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPeriodo.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPeriodo.ForeColor = System.Drawing.Color.White;
-            this.btnPeriodo.Location = new System.Drawing.Point(40, 335);
+            this.btnPeriodo.Location = new System.Drawing.Point(40, 353);
             this.btnPeriodo.Name = "btnPeriodo";
             this.btnPeriodo.Size = new System.Drawing.Size(390, 45);
             this.btnPeriodo.TabIndex = 5;
@@ -148,7 +149,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(40, 405);
+            this.button6.Location = new System.Drawing.Point(40, 495);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(390, 45);
             this.button6.TabIndex = 6;
@@ -159,17 +160,32 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(36, 389);
+            this.panel2.Location = new System.Drawing.Point(40, 479);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(394, 10);
             this.panel2.TabIndex = 7;
+            // 
+            // btnVotar
+            // 
+            this.btnVotar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnVotar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVotar.Font = new System.Drawing.Font("Book Antiqua", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVotar.ForeColor = System.Drawing.Color.White;
+            this.btnVotar.Location = new System.Drawing.Point(40, 418);
+            this.btnVotar.Name = "btnVotar";
+            this.btnVotar.Size = new System.Drawing.Size(390, 45);
+            this.btnVotar.TabIndex = 8;
+            this.btnVotar.Text = "🗳️ Votar";
+            this.btnVotar.UseVisualStyleBackColor = false;
+            this.btnVotar.Click += new System.EventHandler(this.btnVotar_Click);
             // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(454, 481);
+            this.ClientSize = new System.Drawing.Size(454, 561);
+            this.Controls.Add(this.btnVotar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.btnPeriodo);
@@ -201,5 +217,6 @@
         private System.Windows.Forms.Button btnPeriodo;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnVotar;
     }
 }

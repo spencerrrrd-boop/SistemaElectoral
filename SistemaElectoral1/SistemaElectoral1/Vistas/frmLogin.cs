@@ -48,8 +48,8 @@ namespace SistemaElectoral1.Vistas
             }
             else if (UsuarioBLL.EsVotante(usuario))
             {
-                frmVotacion votacion = new frmVotacion(usuario);
-                votacion.Show();
+                frmMenu menu = new frmMenu(usuario);
+                menu.Show();
                 this.Hide();
             }
         }

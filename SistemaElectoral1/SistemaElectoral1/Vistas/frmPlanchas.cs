@@ -1,4 +1,5 @@
-﻿using SistemaElectoral1.AccesoDatos;
+﻿using Microsoft.Data.SqlClient;
+using SistemaElectoral1.AccesoDatos;
 using SistemaElectoral1.LogicaNegocio;
 using SistemaElectoral1.Models;
 using System;
@@ -24,21 +25,43 @@ namespace SistemaElectoral1.Vistas
 
             if (UsuarioBLL.EsAdministrador(_usuarioActual))
             {
-                // Administrador ve solo su plancha
+                // Ocultar selector de plancha
+                lblSeleccionarPlancha.Visible = false;
+                cmbPlanchas.Visible = false;
+
                 _planchaActual = PlanchaBLL.ObtenerMiPlancha(_usuarioActual.UsuarioID);
                 if (_planchaActual != null)
-                {
-                    txtNombrePlancha.Text = _planchaActual.NombrePlancha;
-                    txtLema.Text = _planchaActual.Lema;
-                    txtLogoRuta.Text = _planchaActual.LogoRuta;
-                    CargarCandidatos(_planchaActual.PlanchaID);
-                }
+                    CargarDatosPlancha(_planchaActual);
             }
             else if (UsuarioBLL.EsDirector(_usuarioActual))
             {
-                // Director puede crear nuevas planchas
-                _planchaActual = null;
+                // Cargar todas las planchas en el combo
+                CargarComboPlanchas();
             }
+        }
+
+        private void CargarComboPlanchas()
+        {
+            List<Plancha> planchas = PlanchaBLL.ObtenerTodas();
+            cmbPlanchas.DataSource = planchas;
+            cmbPlanchas.DisplayMember = "NombrePlancha";
+            cmbPlanchas.ValueMember = "PlanchaID";
+            cmbPlanchas.SelectedIndex = -1;
+        }
+
+        private void cmbPlanchas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbPlanchas.SelectedIndex < 0) return;
+            _planchaActual = (Plancha)cmbPlanchas.SelectedItem;
+            CargarDatosPlancha(_planchaActual);
+        }
+
+        private void CargarDatosPlancha(Plancha p)
+        {
+            txtNombrePlancha.Text = p.NombrePlancha;
+            txtLema.Text = p.Lema;
+            txtLogoRuta.Text = p.LogoRuta;
+            CargarCandidatos(p.PlanchaID);
         }
 
         private void CargarPuestos()
@@ -59,7 +82,7 @@ namespace SistemaElectoral1.Vistas
                 string query = @"SELECT NombrePuesto, NombreCompleto, Matricula 
                                  FROM vw_CandidatosPorPlancha 
                                  WHERE PlanchaID = @PlanchaID";
-                var cmd = new Microsoft.Data.SqlClient.SqlCommand(query, cn);
+                var cmd = new SqlCommand(query, cn);
                 cmd.Parameters.AddWithValue("@PlanchaID", planchaID);
                 cn.Open();
                 var dt = new System.Data.DataTable();
@@ -71,12 +94,10 @@ namespace SistemaElectoral1.Vistas
         private void btnSeleccionarLogo_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Imagenes|*.jpg;*.jpeg;*.png;*.bmp";
+            ofd.Filter = "Imagenes|*.jpg;*.jpeg;*.png;*.bmp;*.svg";
             ofd.Title = "Seleccionar Logo del Partido";
             if (ofd.ShowDialog() == DialogResult.OK)
-            {
                 txtLogoRuta.Text = ofd.FileName;
-            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -90,7 +111,6 @@ namespace SistemaElectoral1.Vistas
 
             if (_planchaActual == null)
             {
-                // Crear nueva plancha (Director)
                 Plancha p = new Plancha
                 {
                     NombrePlancha = txtNombrePlancha.Text.Trim(),
@@ -99,22 +119,17 @@ namespace SistemaElectoral1.Vistas
                     AdministradorID = _usuarioActual.UsuarioID
                 };
                 var resultado = PlanchaBLL.Registrar(p);
-                MessageBox.Show(resultado.mensaje,
-                    resultado.exito ? "Exito" : "Error",
-                    MessageBoxButtons.OK,
-                    resultado.exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                MessageBox.Show(resultado.mensaje, resultado.exito ? "Exito" : "Error",
+                    MessageBoxButtons.OK, resultado.exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
             }
             else
             {
-                // Actualizar plancha existente (Administrador)
                 _planchaActual.NombrePlancha = txtNombrePlancha.Text.Trim();
                 _planchaActual.Lema = txtLema.Text.Trim();
                 _planchaActual.LogoRuta = txtLogoRuta.Text.Trim();
-                var resultado = PlanchaBLL.Actualizar(_planchaActual, _usuarioActual.UsuarioID);
-                MessageBox.Show(resultado.mensaje,
-                    resultado.exito ? "Exito" : "Error",
-                    MessageBoxButtons.OK,
-                    resultado.exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                var resultado = PlanchaBLL.Actualizar(_planchaActual, _planchaActual.AdministradorID);
+                MessageBox.Show(resultado.mensaje, resultado.exito ? "Exito" : "Error",
+                    MessageBoxButtons.OK, resultado.exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
             }
         }
 
@@ -122,7 +137,7 @@ namespace SistemaElectoral1.Vistas
         {
             if (_planchaActual == null)
             {
-                MessageBox.Show("Primero guarda la plancha antes de agregar candidatos.",
+                MessageBox.Show("Primero selecciona una plancha.",
                     "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -134,8 +149,37 @@ namespace SistemaElectoral1.Vistas
                 return;
             }
 
+            using (var cn = Conexion.ObtenerConexion())
+            {
+                // Buscar usuario por matricula
+                string queryUsuario = "SELECT UsuarioID FROM Usuarios WHERE Matricula = @Matricula";
+                var cmdUsuario = new SqlCommand(queryUsuario, cn);
+                cmdUsuario.Parameters.AddWithValue("@Matricula", txtCandidatoMatricula.Text.Trim());
+                cn.Open();
+                var result = cmdUsuario.ExecuteScalar();
+
+                if (result == null)
+                {
+                    MessageBox.Show("No se encontro un usuario con esa matricula.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                int usuarioID = (int)result;
+                int puestoID = cmbPuesto.SelectedIndex + 1;
+
+                string queryInsert = @"INSERT INTO Candidatos (PlanchaID, PuestoID, UsuarioID)
+                                       VALUES (@PlanchaID, @PuestoID, @UsuarioID)";
+                var cmdInsert = new SqlCommand(queryInsert, cn);
+                cmdInsert.Parameters.AddWithValue("@PlanchaID", _planchaActual.PlanchaID);
+                cmdInsert.Parameters.AddWithValue("@PuestoID", puestoID);
+                cmdInsert.Parameters.AddWithValue("@UsuarioID", usuarioID);
+                cmdInsert.ExecuteNonQuery();
+            }
+
             MessageBox.Show("Candidato agregado correctamente.",
                 "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txtCandidatoMatricula.Text = "";
             CargarCandidatos(_planchaActual.PlanchaID);
         }
 

@@ -47,6 +47,8 @@
             this.txtCandidatoMatricula = new System.Windows.Forms.TextBox();
             this.btnAgregarCandidato = new System.Windows.Forms.Button();
             this.dgvCandidatos = new System.Windows.Forms.DataGridView();
+            this.cmbPlanchas = new System.Windows.Forms.ComboBox();
+            this.lblSeleccionarPlancha = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).BeginInit();
             this.SuspendLayout();
@@ -245,12 +247,34 @@
             this.dgvCandidatos.Size = new System.Drawing.Size(680, 200);
             this.dgvCandidatos.TabIndex = 18;
             // 
+            // cmbPlanchas
+            // 
+            this.cmbPlanchas.FormattingEnabled = true;
+            this.cmbPlanchas.Location = new System.Drawing.Point(34, 104);
+            this.cmbPlanchas.Name = "cmbPlanchas";
+            this.cmbPlanchas.Size = new System.Drawing.Size(337, 21);
+            this.cmbPlanchas.TabIndex = 20;
+            this.cmbPlanchas.SelectedIndexChanged += new System.EventHandler(this.cmbPlanchas_SelectedIndexChanged);
+            // 
+            // lblSeleccionarPlancha
+            // 
+            this.lblSeleccionarPlancha.AutoSize = true;
+            this.lblSeleccionarPlancha.Font = new System.Drawing.Font("Yu Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSeleccionarPlancha.ForeColor = System.Drawing.Color.White;
+            this.lblSeleccionarPlancha.Location = new System.Drawing.Point(32, 78);
+            this.lblSeleccionarPlancha.Name = "lblSeleccionarPlancha";
+            this.lblSeleccionarPlancha.Size = new System.Drawing.Size(197, 25);
+            this.lblSeleccionarPlancha.TabIndex = 21;
+            this.lblSeleccionarPlancha.Text = "Seleccionar Plancha";
+            // 
             // frmPlanchas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(724, 641);
+            this.Controls.Add(this.lblSeleccionarPlancha);
+            this.Controls.Add(this.cmbPlanchas);
             this.Controls.Add(this.dgvCandidatos);
             this.Controls.Add(this.btnAgregarCandidato);
             this.Controls.Add(this.txtCandidatoMatricula);
@@ -305,5 +329,7 @@
         private System.Windows.Forms.TextBox txtCandidatoMatricula;
         private System.Windows.Forms.Button btnAgregarCandidato;
         private System.Windows.Forms.DataGridView dgvCandidatos;
+        private System.Windows.Forms.ComboBox cmbPlanchas;
+        private System.Windows.Forms.Label lblSeleccionarPlancha;
     }
 }
